@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  <icon>http://example.com/icon.png</icon>
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-04-25T09:49:17.956Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>非常时期囤货手册</title>
+    <link href="http://example.com/2022/04/25/%E9%9D%9E%E5%B8%B8%E6%97%B6%E6%9C%9F%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C/"/>
+    <id>http://example.com/2022/04/25/%E9%9D%9E%E5%B8%B8%E6%97%B6%E6%9C%9F%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C/</id>
+    <published>2022-04-25T09:48:49.000Z</published>
+    <updated>2022-04-25T09:49:17.956Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;非常时期囤货手册&lt;/p&gt;
+&lt;p&gt;（同步更新至4.19日的版本，原始链接：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>财务</title>
+    <link href="http://example.com/2022/04/25/%E8%B4%A2%E5%8A%A1/"/>
+    <id>http://example.com/2022/04/25/%E8%B4%A2%E5%8A%A1/</id>
+    <published>2022-04-25T08:32:00.000Z</published>
+    <updated>2022-04-25T08:32:26.007Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;财务（Finance）&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;财务的定义&quot;&gt;&lt;a href=&quot;#财务的定义&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2022/04/20/hello-world/"/>
+    <id>http://example.com/2022/04/20/hello-world/</id>
+    <published>2022-04-20T06:38:59.449Z</published>
+    <updated>2022-04-20T06:38:59.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
