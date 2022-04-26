@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
-  <icon>http://example.com/icon.png</icon>
+  <title>BYTECAB</title>
+  <icon>https://byte.cab/icon.png</icon>
+  <subtitle>字节出租车</subtitle>
+  <link href="https://byte.cab/atom.xml" rel="self"/>
   
-  <link href="http://example.com/atom.xml" rel="self"/>
-  
-  <link href="http://example.com/"/>
+  <link href="https://byte.cab/"/>
   <updated>2022-04-25T09:49:17.956Z</updated>
-  <id>http://example.com/</id>
+  <id>https://byte.cab/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>bitmew</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>非常时期囤货手册</title>
-    <link href="http://example.com/2022/04/25/%E9%9D%9E%E5%B8%B8%E6%97%B6%E6%9C%9F%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C/"/>
-    <id>http://example.com/2022/04/25/%E9%9D%9E%E5%B8%B8%E6%97%B6%E6%9C%9F%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C/</id>
+    <link href="https://byte.cab/2022/04/25/%E9%9D%9E%E5%B8%B8%E6%97%B6%E6%9C%9F%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C/"/>
+    <id>https://byte.cab/2022/04/25/%E9%9D%9E%E5%B8%B8%E6%97%B6%E6%9C%9F%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C/</id>
     <published>2022-04-25T09:48:49.000Z</published>
     <updated>2022-04-25T09:49:17.956Z</updated>
     
@@ -40,8 +40,8 @@
   
   <entry>
     <title>财务</title>
-    <link href="http://example.com/2022/04/25/%E8%B4%A2%E5%8A%A1/"/>
-    <id>http://example.com/2022/04/25/%E8%B4%A2%E5%8A%A1/</id>
+    <link href="https://byte.cab/2022/04/25/%E8%B4%A2%E5%8A%A1/"/>
+    <id>https://byte.cab/2022/04/25/%E8%B4%A2%E5%8A%A1/</id>
     <published>2022-04-25T08:32:00.000Z</published>
     <updated>2022-04-25T08:32:26.007Z</updated>
     
@@ -62,8 +62,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2022/04/20/hello-world/"/>
-    <id>http://example.com/2022/04/20/hello-world/</id>
+    <link href="https://byte.cab/2022/04/20/hello-world/"/>
+    <id>https://byte.cab/2022/04/20/hello-world/</id>
     <published>2022-04-20T06:38:59.449Z</published>
     <updated>2022-04-20T06:38:59.449Z</updated>
     
