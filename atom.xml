@@ -6,7 +6,7 @@
   <link href="https://byte.cab/atom.xml" rel="self"/>
   
   <link href="https://byte.cab/"/>
-  <updated>2022-06-06T07:53:31.230Z</updated>
+  <updated>2022-06-06T08:16:57.800Z</updated>
   <id>https://byte.cab/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>架构设计方法</title>
+    <link href="https://byte.cab/framework-design.html"/>
+    <id>https://byte.cab/framework-design.html</id>
+    <published>2022-06-06T08:14:24.000Z</published>
+    <updated>2022-06-06T08:16:57.800Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;那些技术实战中的架构设计方法&quot;&gt;&lt;a href=&quot;#那些技术实战中的架构设计方法&quot; class=&quot;headerlink&quot; title=&quot;那些技术实战中的架构设计方法&quot;&gt;&lt;/a&gt;那些技术实战中的架构设计方法&lt;/h1&gt;&lt;h2 id=&quot;常用思考方法&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>如何写出一篇好的技术方案</title>
