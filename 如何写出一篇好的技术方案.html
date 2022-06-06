@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="byte,bytecab" />
+  <meta name="author" content="bitmew" />
+  <meta name="description" content="记录" />
+  
+  
+  <title>
+    
+      如何写出一篇好的技术方案 
+      
+      
+      |
+    
+     BYTECAB
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.lug.ustc.edu.cn/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SNF83F0ZQR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SNF83F0ZQR');
+    </script>
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="BYTECAB" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">bytecab</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">如何写出一篇好的技术方案</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-06-06 15:11:31
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>我们为什么需要写技术方案？总结下来无非是几点，从不同人的视角来看：</p>
+<ul>
+<li><strong>产品：</strong>验证技术方案是否能够 match 上产品方案</li>
+<li><strong>测试：</strong>验证技术方案对测试方案是否有足够 &amp; 准确的输入</li>
+<li><strong>同事 &amp; leader：</strong>参与技术方案评审，验证技术方案的合理性</li>
+<li><strong>新人</strong>(不单单指新同学也指新接触这一块的同学)：拿到技术方案可以很快对某一块的事情熟悉起来</li>
+</ul>
+<h1 id="什么样的技术方案是一个好的技术方案"><a href="#什么样的技术方案是一个好的技术方案" class="headerlink" title="什么样的技术方案是一个好的技术方案"></a>什么样的技术方案是一个好的技术方案</h1><p>我们都知道技术方案是指导具体开发工作的，可以分别从开发的事前、事中、事后来讨论这个问题。</p>
+<h3 id="事前"><a href="#事前" class="headerlink" title="事前"></a><strong>事前</strong></h3><ul>
+<li>明确的目标：整个技术方案要达成什么目的</li>
+<li>低沟通成本：产品测试能从技术方案上获取足够的输入，不需要反复找你确认</li>
+<li>技术选型思考：为什么要这么做？和业内方案相比有什么好处和坏处，如何权衡的</li>
+</ul>
+<h3 id="事中"><a href="#事中" class="headerlink" title="事中"></a><strong>事中</strong></h3><ul>
+<li>少调整：尽可能少的技术方案需要调整， 否则无法完成开发任务</li>
+</ul>
+<h3 id="事后"><a href="#事后" class="headerlink" title="事后"></a><strong>事后</strong></h3><ul>
+<li>少补丁：尽可能少的 bug 或者遗漏</li>
+<li>可扩展 &amp; 可复用：相对简单的改动就能支持新增需求，类似场景可复用不需要重复开发</li>
+</ul>
+<p><strong>一篇好的技术方案可以贯穿整个研发的生命周期，并且能起到很好的指导意义</strong>，就如同写小说之前作者必须出一个大纲的逻辑是一致的。</p>
+<h1 id="如何写好一篇好的技术方案"><a href="#如何写好一篇好的技术方案" class="headerlink" title="如何写好一篇好的技术方案"></a>如何写好一篇好的技术方案</h1><p>那么，如何写出一篇好的技术方案呢？下面列举出笔者认为应该做到的一些点。</p>
+<p><strong>清晰的目标</strong></p>
+<p>一份技术文档需要有一个清晰的目标（业务需求建议自己总结而不是 Copy from PRD，技术自发的那肯定得自己总结），那目标怎么来的呢？是从需求里转化过来的。那么，如何将对应的需求转化为一个清晰的目标？我认为最重要的是要尽量定义一个可衡量的标准。需求的种类一般来说就两种，分别是：</p>
+<p><strong>1. 产品类需求——业务方 or 产品方发起提给技术</strong>，包括但不限于以下几种：</p>
+<ul>
+<li>页面交互：能提升多少的运营操作效率，多少 PV、UV 这种可量化的数字？</li>
+<li>业务 SOP 调整：带来的业务价值是什么？是能降多少本还是提升多少时效？</li>
+<li>数据订正：订正能解决什么问题？防止多少钱未结算？又或者是防止多少客诉？</li>
+</ul>
+<p>**<br>**</p>
+<p><strong>2. 技术类需求——技术自发提出</strong>，包括但不限于以下几种：</p>
+<ul>
+<li>性能优化：优化多少？20%、30% 还是 50%？</li>
+<li>数据隔离：隔离的范围是什么，涉及多少张表，多少数据？可以减少当前的什么问题？减少多少？</li>
+<li>各种小工具：没有小工具之前是什么样？有之后是什么样？可以带来什么好处？</li>
+<li>研发效能提升：提升多少？有没有可以量化的指标？而不是为了做而做。</li>
+</ul>
+<p>在众多的需求当中还有一些是我们要去辨别的伪需求——不是用户真正想要的需求，如用户想要将一个飞机改造成火箭，但是产品可能提过来的仅仅是把飞机的两个翅膀砍掉，那么砍掉翅膀就能变成火箭了吗？明显不能，所以这种需求一定要注意鉴别。</p>
+<p><strong>大纲图</strong></p>
+<p>有句话叫“不谋全局者不足谋一域”，在技术方案中我想也是如此。在一个技术方案中，一个大纲图是不可或缺的 ，有的人叫它技术架构图，有的人叫它数据流转图，这都不重要，<strong>重要的是我们能从这张图中看到整体的脉络</strong>，那么这张图需要有哪几个要点呢？</p>
+<ol>
+<li>图不用很细（比如加工比较复杂我们可以简单写**加工），但是要能看到全貌，具体的每个模块如果需要展开的，那么在对应的详细设计中体现即可，在这里我们关注的是整体；</li>
+<li>接口如有归属不同的应用要标明；</li>
+<li>数据存储介质不同要标明；</li>
+<li>数据流转的箭头要清晰明确；</li>
+<li>数据加工计算的输入和输出要体现，同时要体现加工的运行环境（比如到底是 odps 计算还是内存计算，内存计算的话是在那个应用）。</li>
+</ol>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/vz1ttk8KwbTCyRfnRibmWLibiaXe4nL7esYJneTkfjWiaajicczaDzaiaXyAhuOJgG823bsaxYF3X6HIibo8tT1xucqzA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>大纲图的逻辑示意参考</p>
+<p><strong>模型设计</strong></p>
+<p>讲到数据模型设计，E-R 图是必不可少的，E-R 图应该包含以下信息：</p>
+<p><strong>1. 每个领域对象，如果要持久化，都有表来存储。</strong>我们设计完 ER 图的时候，应该根据这条原则做一番检查，避免漏掉一些表。在大型项目中，漏掉表是很常见的事情，应尽量避免。</p>
+<p><strong>2. 领域对象之间的关系，如果要持久化，都要在表结构中体现。</strong>这种体现，可能是 code 字段，可能是外键，可能是中间表。我们设计完 ER 图的时候，也应该根据这条原则做一番检查，避免漏掉一些关系。在大型项目中，漏掉关系更是司空见惯，应尽量避免。</p>
+<p><strong>3. 清晰定义的表名。设计 ER 图的时候，就要设计出清晰定义的表名。</strong>清晰定义的表名，可以帮助大家理解 ER 图，可以帮助大家映射回领域对象及其关系。在后续的设计和实施中，将沿用这个表名。</p>
+<p><strong>4. 清晰定义的字段名、字段类型、字段长度和枚举值。</strong>很多同学容易忽略这点，他们往往清晰定义了表名，却没有重视表的字段。认真去做的时候，会发现，这里面有很多工作。例如，字段名是否合适，用什么类型好，字段长度多少合适，是否有枚举值等等，都需要一一斟酌。如果这点做好了，在实施的时候，可以避免很多麻烦，甚至避免返工。</p>
+<p>**对外依赖提前确认<br>**</p>
+<p><strong>技术方案 1：</strong>需要依赖缓存、分布式调度中间件、消费外部的消息，但是没有把对应的中间件使用方式、数据格式贴出来。</p>
+<p><strong>技术方案 2：</strong>需要依赖缓存、分布式调度中间件、消费外部的消息，将缓存接入的方法 &amp; 对应的缓存 key-value 设计写清楚，将分布式调度中间件接入所需要准备的依赖项梳理好，将外销消息对应的 topic 和数据格式列清楚。</p>
+<p>两个方案对比好坏其实很明显。如果一开始我们在技术方案里面将外部依赖确定好，那么我们在开发的时候就一马平川，反之如果外部依赖都不确定的情况下就进入到开发，那么返工的概率将大大增加，从而降低我们的工作效率。</p>
+<p>那么，对外的依赖有哪些以及我们应该要确认什么信息呢？下面列举了一些常见的依赖情况：</p>
+<ul>
+<li><strong>外部 hsf 依赖：</strong>需要确认对应 hsf 接口的类、方法、version，以及二方包（也可使用泛化调用）；</li>
+<li><strong>外部消息依赖：</strong>需要确认消息的 topic、数据格式；</li>
+<li><strong>分布式调度、缓存等中间件：</strong>当前应用是否接入过该中间件，未接入需要去到官网确认接入文档，接入的话需要确认是否可以复用接入逻辑。</li>
+</ul>
+<p><strong>内部前后模块依赖 &amp; 层次结构</strong></p>
+<p>模块依赖层次从高到低分为：</p>
+<ul>
+<li>领域依赖（如交易依赖商品）</li>
+<li>应用依赖（如 cntcp 应用依赖 cngfc 应用）</li>
+<li>接口依赖（如滚存看板查询接口依赖于锁接口 &amp; 渠道集接口）</li>
+</ul>
+<p>我们举接口依赖的例子来看：一共三个接口分别是滚存看板查询接口、锁接口、渠道集接口，滚存看板查询接口依赖于锁接口和渠道集接口。</p>
+<p>技术方案 1 目录层次：滚存看板查询接口、锁接口、渠道集接口；</p>
+<p>技术方案 2 目录层次：锁接口、渠道集接口、滚存看板查询接口。</p>
+<p>很明显，技术方案 2 是更加合理的，A 依赖于 B 那么 B 应该先做。</p>
+<p>我们在写技术方案的时候，要考虑什么应该在前什么应该在后，而不是想一步写一步。要有一个清晰、有序的结构，不然别人看起来就会是杂乱无章的。</p>
+<p><strong>一个模块里面应该有啥</strong></p>
+<p>下面列出一个技术方案的模块里面应该要写哪些东西，供参考：</p>
+<h3 id=""><a href="#" class="headerlink" title="** **"></a>** **</h3><h3 id="1-具体的接口定义"><a href="#1-具体的接口定义" class="headerlink" title="1. 具体的接口定义"></a><strong>1. 具体的接口定义</strong></h3><p>要求：实现一个飞机运力合同查询接口，入参为运力大区</p>
+<p>技术方案 1：</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">入参：&#123;&quot;area&quot;: &quot;南美&quot;&#125;出参:&#123;&quot;date&quot;: &quot;***&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>技术方案 2：</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">方法名：CapacityService.queryPlan入参：&#123;&quot;cnArea&quot;: &quot;南美&quot;&#125;出参:&#123;&quot;date&quot;: &quot;***&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>技术方案 2 是更好的，为什么？测试、前端 、后续要接手该接口的人都能够一下子找到你的接口并清楚知道输入输出是什么。另外，1 和 2 的入参一个 area 一个 cnArea，那么到底哪个更对呢？这里由于系统中在用的都是 cnArea，固沿用 cnArea 是对的（一致性减小沟通成本）。</p>
+<p>这里总结对接口定义有几点要求：</p>
+<ul>
+<li>完整的类和方法名</li>
+<li>入参字段如果系统中已有，那便沿用；如果没有，那么英文的描述需要准确（可同产品业务商榷）</li>
+<li>出参字段要求同入参</li>
+</ul>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="2-详细的时序图"><a href="#2-详细的时序图" class="headerlink" title="2. 详细的时序图"></a><strong>2. 详细的时序图</strong></h3><p>要求：实现一个学生信息查询接口。</p>
+<p>技术方案 1：写出查询结果中执行的相关步骤。</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">step1. 入参校验step2. 查询A表step3. 对A标返回结果做校验step4. 查询B表······</span><br></pre></td></tr></table></figure>
+
+<p>技术方案 2：在 1 的基础上使用时序图表达出来。</p>
+<p>推荐使用技术方案 2，好处是尽管内容相同但是时序图能够更直观地看到层次、数据流转等信息。</p>
+<p>除了以上比较基础的 2 点，我觉得的还有一些要点：</p>
+<ul>
+<li>数据加工的详细图（如有）——同样推荐用图的形式可以更直观</li>
+<li>消息设计（如有），明确消息生产方、消费方、tps、数据结构</li>
+<li>自测用例（推荐），比较重要的功能点构造一些自测用例</li>
+</ul>
+<p>······</p>
+<p><strong>技术选型分析</strong></p>
+<p>要求：实现一个定时任务，定期将过期的数据删除。</p>
+<p>技术方案 1：使用 spring 自带的定时器进行数据清除。</p>
+<p>技术方案 2：使用分布式调度中间件（如 schedulerx）进行定时过期数据清除。</p>
+<p>乍一看好像都能实现，但仔细对比两个实现方式之后我认为大部分人还是会选择技术方案 2，为什么？下面列出一些在选择技术方案时考虑的点。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>目标是否可达成</th>
+<th>实现难度</th>
+<th>可维护性</th>
+<th>可扩展性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>技术方案1-spring定时器</td>
+<td>是</td>
+<td>易</td>
+<td>易</td>
+<td>低</td>
+</tr>
+<tr>
+<td>技术方案2-分布式调度中间件</td>
+<td>是</td>
+<td>易</td>
+<td>中</td>
+<td>高</td>
+</tr>
+</tbody></table>
+<p><strong>安全生产</strong></p>
+<p>安全生产包括几个部分，包括且不限于下面几个部分</p>
+<ul>
+<li>监控</li>
+<li>对账</li>
+<li>灰度方案</li>
+<li>数据隔离</li>
+<li>兼容性评估</li>
+<li>发布流程</li>
+</ul>
+<p>**<br>**</p>
+<p><strong>我们举一个例子。</strong></p>
+<p>需求：在消费者收货成功时触发对商家的结算。</p>
+<p>技术方案 1：******，写了一堆如何触发结算、如何更好地支持后续的可扩展性；</p>
+<p>技术方案 2：******，写的方案可扩展性没有技术方案 1 高，但是做好了未触发结算的监控、触发结算之后的对账，并设计好了对应的报表防止出现资损。</p>
+<p>其实这也是我们在技术方案中可能会忽略的一点——埋头于代码结构如何如何的好，但是有些东西其实是要比单纯的代码更重要。就比如风险控制，完备的监控、不可缺少的对账是保障公司资金安全，更是保障我们自己绩效的工具（此处应有表情）。</p>
+<p>那么对于监控、对账的具体要求是什么呢？我认为有以下几点：</p>
+<p><strong>监控：</strong></p>
+<ul>
+<li>监控目标：写清楚监控的是什么内容</li>
+<li>监控点：如通过打印日志监控，那么日志打印在哪个类的哪个方法</li>
+<li>监控触发：是通过 sunfire 采集触发还是其它，如果是 sunfire 采集最好能把监控项地址贴出来</li>
+<li>监控订阅人：监控告警需要的订阅人</li>
+<li>监控触发后的解决方法：如果发生异常该如何解决？如手工触发结算</li>
+</ul>
+<p><strong>对账：</strong></p>
+<ul>
+<li>对账目标：写清楚对账是为什么</li>
+<li>对账方式：写清楚是怎么对账的（如通过 odps 天级定时任务，履行单上的关务资源 code 和日志表中关务 cp 回传报文的关务资源 code 对比要一致，不一致的形成某个数据集，通过锦衣卫-资损风险平台配置）</li>
+<li>对账告警订阅人</li>
+<li>对账异常之后的解决办法</li>
+</ul>
+<p>还有其它几个部分也补充说一下：</p>
+<p><strong>灰度方案，</strong>包括但不限于：</p>
+<ul>
+<li>多方前置准备</li>
+<li>灰度切流开关设计</li>
+<li>灰度切流节奏</li>
+<li>异常应对</li>
+</ul>
+<p>**<br>**</p>
+<p><strong>向前兼容性，</strong>包括但不限于：</p>
+<ul>
+<li>接口的向前兼容：尤其是对外的接口</li>
+<li>数据结构的向前兼容：如不能随意改变字段的存储类型和格式</li>
+</ul>
+<p>**<br>**</p>
+<p><strong>环境隔离：</strong></p>
+<ul>
+<li>如有租户隔离 &amp; 预发线上隔离的情况需要考虑数据</li>
+</ul>
+<p>**<br>**</p>
+<p><strong>发布流程，</strong>包括但不限于：</p>
+<ul>
+<li>发布计划</li>
+<li>检查项列表</li>
+<li>发布流量监控</li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/%E5%9B%A4%E8%B4%A7%E6%89%8B%E5%86%8C.html" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-06-06 15:11:31
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E6%98%AF%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-text">什么样的技术方案是一个好的技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%89%8D"><span class="toc-text">事前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%B8%AD"><span class="toc-text">事中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%90%8E"><span class="toc-text">事后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%86%99%E5%A5%BD%E4%B8%80%E7%AF%87%E5%A5%BD%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-text">如何写好一篇好的技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">** **</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B7%E4%BD%93%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">1. 具体的接口定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AF%A6%E7%BB%86%E7%9A%84%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-text">2. 详细的时序图</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+  <div id="gitalk-container"></div>
+
+  <script>
+    const gitalk = new Gitalk({
+      clientID: '6c7543ca6bc57ca8a832',
+      clientSecret: '640b123f070d983671d0619c6efcff15d9a37a2d',
+      repo: 'bytecab-comment',
+      owner: 'bitmew',
+      admin: ['bitmew'],
+      id: location.pathname,
+      distractionFreeMode: false
+    })
+
+    gitalk.render('gitalk-container')
+  </script>
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a href="https://byte.cab">Copyright © 2022 BYTECAB</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E5%A5%BD%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88 + '&url=' + https%3A%2F%2Fbyte.cab%2F%25E5%25A6%2582%25E4%25BD%2595%25E5%2586%2599%25E5%2587%25BA%25E4%25B8%2580%25E7%25AF%2587%25E5%25A5%25BD%25E7%259A%2584%25E6%258A%2580%25E6%259C%25AF%25E6%2596%25B9%25E6%25A1%2588.html + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://byte.cab/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E5%A5%BD%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88.html" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

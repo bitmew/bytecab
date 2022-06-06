@@ -6,7 +6,7 @@
   <link href="https://byte.cab/atom.xml" rel="self"/>
   
   <link href="https://byte.cab/"/>
-  <updated>2022-04-26T09:53:09.145Z</updated>
+  <updated>2022-06-06T07:17:14.923Z</updated>
   <id>https://byte.cab/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何写出一篇好的技术方案</title>
+    <link href="https://byte.cab/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E5%A5%BD%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88.html"/>
+    <id>https://byte.cab/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E7%AF%87%E5%A5%BD%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88.html</id>
+    <published>2022-06-06T07:11:31.000Z</published>
+    <updated>2022-06-06T07:17:14.923Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我们为什么需要写技术方案？总结下来无非是几点，从不同人的视角来看：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;产品：&lt;/strong&gt;验证技术方案是否能够 match 上产品方案&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;测试：&lt;/strong&gt;验证技术方案对测试方案是否有足够</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>非常时期囤货手册</title>
